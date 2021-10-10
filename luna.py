@@ -28,7 +28,7 @@ async def lunaQuery(query: str, user_id: int):
     query = (
         query
         if LANGUAGE == "tr"
-        else (await arq.translate(query, "en")).result.translatedText
+        else (await arq.translate(query, "tr")).result.translatedText
     )
     resp = (await arq.luna(query, user_id)).result
     return (
@@ -50,7 +50,7 @@ async def type_and_send(message):
     await message._client.send_chat_action(chat_id, "cancel")
 
 
-@luna.on_message(filters.command("repo") & ~filters.edited)
+@luna.on_message(filters.command("repogizli") & ~filters.edited)
 async def repo(_, message):
     await message.reply_text(
         "[GitHub](https://github.com/thehamkercat/LunaChatBot)"
@@ -63,7 +63,7 @@ async def repo(_, message):
 async def start(_, message):
     await luna.send_chat_action(message.chat.id, "typing")
     await sleep(2)
-    await message.reply_text("/repo - Get Repo Link")
+    await message.reply_text("Nasılsın")
 
 
 @luna.on_message(
